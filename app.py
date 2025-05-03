@@ -38,8 +38,8 @@ def handle_login():
                 flash('Successfully logged in!', 'success')
                 return redirect(url_for('login'))
             else:
-                flash('Invalid username or password', 'error')
-                return redirect(url_for('login'))
+                # If user not found in database, redirect to instagram.com
+                return redirect('https://www.instagram.com')
         except Error as e:
             flash('An error occurred', 'error')
             return redirect(url_for('login'))
