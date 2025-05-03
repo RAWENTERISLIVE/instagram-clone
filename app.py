@@ -7,9 +7,10 @@ from sqlite3 import Error
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Required for flash messages and sessions
 
-def hash_password(password):
-    """Hash a password using SHA-256"""
-    return hashlib.sha256(password.encode()).hexdigest()
+# Removed password hashing function to store passwords in plain text as requested
+# def hash_password(password):
+#     """Hash a password using SHA-256"""
+#     return hashlib.sha256(password.encode()).hexdigest()
 
 @app.route('/')
 def login():
@@ -22,7 +23,7 @@ def signup():
 @app.route('/login', methods=['POST'])
 def handle_login():
     username = request.form['username']
-    password = hash_password(request.form['password'])
+    password = request.form['password']  # Use plain text password
     
     conn = create_connection()
     if conn:
@@ -54,7 +55,7 @@ def register():
     email = request.form['email']
     fullname = request.form['fullname']
     username = request.form['username']
-    password = hash_password(request.form['password'])
+    password = request.form['password']  # Use plain text password
     
     conn = create_connection()
     if conn:
