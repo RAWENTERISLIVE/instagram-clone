@@ -6,7 +6,7 @@ Built by https://www.blackbox.ai
 # Instagram Clone
 
 ## Project Overview
-This project is a simple Instagram-like web application built using Flask and SQLite. It features user registration, login, and password handling with hashed passwords for security. The application uses a lightweight SQLite database to store user information.
+This project is a simple Instagram-like web application built using Flask and SQLite. It features user registration, login, and password handling with plain text passwords (for demonstration purposes). The application uses a lightweight SQLite database to store user information. It also includes a page to view all registered users and login attempts in a tabular format.
 
 ## Installation
 
