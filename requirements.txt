@@ -1,2 +1,1 @@
-pip install Flask
-python database.py && python app.py
+Flask
